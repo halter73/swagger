@@ -4,4 +4,17 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Routing">
+      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Routing\Debug\net6.0\Microsoft.AspNetCore.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.ApiExplorer">
+      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer\Debug\net6.0\Microsoft.AspNetCore.Mvc.ApiExplorer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
