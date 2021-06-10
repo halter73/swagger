@@ -1,5 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,14 +24,29 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minimal v1"));
 }
 
-Func<string> helloWorld = () => "Hello World!";
-app.MapGet("/text", helloWorld);//.Add(endpointBuilder => endpointBuilder.Metadata.Add(helloWorld.Method));
+//Func<string> helloWorld = () => "Hello World!";
+app.MapGet("/text", (int test) => "Hello World!");//.Add(endpointBuilder => endpointBuilder.Metadata.Add(helloWorld.Method));
 
-Func<HelloRecord> jsonHello = () => new("Hello World!");
-app.MapGet("/json", jsonHello).Add(endpointBuilder => endpointBuilder.Metadata.Add(jsonHello.Method));
+app.MapGet("/text/{test}", (int? test) => test);
 
-//app.MapGet("/", (Func<string>)(() => "Hello World!"));
+app.MapGet("/json", (Func<HelloRecord>)(() => new("Hello World!")));
+
+app.Map("/many", (Func<string>)(() => "Hello World!"));
+
+app.MapGet("/void", () => { });
+
+app.MapGet("/task", () => Task.CompletedTask);
+
+app.MapPost("/iresult", (HelloRecord hello) =>
+{
+    return new JsonResult(hello);
+});
+
+app.MapPost("/frombody", ([FromBody] int hello) =>
+{
+    return new JsonResult(hello);
+});
 
 app.Run();
 
-record HelloRecord(string message);
+public record HelloRecord(string message);

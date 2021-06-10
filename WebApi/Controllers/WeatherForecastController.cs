@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Get(int test)
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -35,5 +35,35 @@ namespace WebApi.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("VoidInt/{test}")]
+        public void Void(int test)
+        {
+        }
+
+        [HttpGet("Void")]
+        public void Void()
+        {
+        }
+
+        [HttpGet("Task")]
+        public Task TaskMethod()
+        {
+            return Task.CompletedTask;
+        }
+
+        [HttpPost("iresult")]
+        public ActionResult TaskMethod(HelloRecord hello)
+        {
+            return new JsonResult(hello);
+        }
+
+        [HttpPost("frombody")]
+        public ActionResult ([FromBody] int hello)
+        {
+            return new JsonResult(hello);
+        }
     }
+
+    public record HelloRecord(string message);
 }
