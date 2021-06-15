@@ -1,6 +1,8 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +11,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMethodInfoApiExplorerServices();
+builder.Services.AddEndpointMetadataApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "MinimalSample", Version = "v1" });
@@ -47,6 +49,26 @@ app.MapPost("/frombody", ([FromBody] int hello) =>
     return new JsonResult(hello);
 });
 
+app.MapPost("/frombodyextra",
+    [ProducesResponseType(typeof(DateTime), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Produces("text/plain")]
+    [Consumes("custom/json")]
+    ([FromBody] int hello) =>
+    {
+        return new JsonResult(hello);
+    });
+
+app.MapPost("/testclass", TestClass.EchoHelloRecord);
+
 app.Run();
 
 public record HelloRecord(string message);
+
+public static class TestClass
+{
+    public static HelloRecord EchoHelloRecord(HelloRecord hello)
+    {
+        return hello;
+    }
+}

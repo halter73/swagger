@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -59,7 +60,16 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("frombody")]
-        public ActionResult ([FromBody] int hello)
+        public ActionResult FromBody([FromBody] int hello)
+        {
+            return new JsonResult(hello);
+        }
+
+        [HttpPost("frombodyextra")]
+        [ProducesResponseType(typeof(DateTime), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Produces("content/text")]
+        public ActionResult FromBodyExtra([FromBody] int hello)
         {
             return new JsonResult(hello);
         }
