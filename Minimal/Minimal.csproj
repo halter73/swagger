@@ -9,25 +9,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Http.Extensions">
-      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.Test\Debug\net6.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions">
-      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.Test\Debug\net6.0\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Mvc.ApiExplorer">
-      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.Test\Debug\net6.0\Microsoft.AspNetCore.Mvc.ApiExplorer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Routing">
-      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.Test\Debug\net6.0\Microsoft.AspNetCore.Routing.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection">
-      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.Test\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-      <HintPath>C:\dev\dotnet\aspnetcore\artifacts\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.Test\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
